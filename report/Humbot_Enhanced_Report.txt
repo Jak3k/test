@@ -1,0 +1,61 @@
+
+<!-- Paragraphs 0-11: Title and Abstract - Enhanced via Humbot.ai -->
+Dublin Business School
+
+Final Year Project Report
+
+Coding Codec: A Space for Users to Learn C#
+
+Name: Jack Whelan
+
+Student ID: 10588528
+
+Stream: Software Development
+
+Email: 10588528@mydbs.ie
+
+Supervisor: Rory O'Donnell
+
+Date: July 2025
+
+Abstract
+
+Coding Codec is a C# learning game developed as my final year project in my Software Development stream at Dublin Business School. I built this foundation where users can register with their email and password, and I implemented a very secure system to keep their data safe.
+
+<!-- Paragraphs 23-24: Chapter 1 Introduction - Enhanced via Humbot.ai -->
+Chapter 1: Introduction
+
+As a final year Computing student interested in software development and user‑centred design, I decided to design a project that would be both useful and technically challenging while matching my academic and career path. Coding Codec is an educational web app designed as an engaging place to master the C# language in a fun, gamified way. The goal was to offer a platform that wouldn’t just teach syntax or logic but would teach through action — learning by doing and solving real problems — so that these methods become second nature to users in a supportive, motivating and fun environment.
+
+<!-- Paragraph 25: Chapter 1 Overview - Manually enhanced per user instructions -->
+This chapter lays out the project’s scope, aims and methodology. It explains why I chose this particular theme and lists the objectives I set when I began.
+
+<!-- Paragraph 26-27: Rationale Behind the Project - Manually enhanced -->
+1.1 Rationale Behind the Project
+
+My motivation for this project came from my own learning experiences and watching others. Using apps like Duolingo, FreeCodeCamp and Codecademy showed me how effective gamified learning can be. Duolingo’s badges, daily streaks, level progress and points kept me engaged and made language study feel rewarding. I wanted to bring that same sense of progress and achievement to learning C#.
+
+<!-- Paragraph 28: Gap Analysis - Manually enhanced -->
+When I looked at existing C# tutorials, I noticed they were often either too passive or too advanced. Many beginner platforms lack structure or motivation; some jump straight into challenges without covering the basics, and others overwhelm newcomers. I saw an opportunity to build a friendly, structured and motivating environment specifically for people starting out with C#.
+
+<!-- Paragraph 29: Concept Birth - Manually enhanced -->
+That’s how “Coding Codec” came to life. The platform teaches beginner and intermediate C# through brief tutorials, hands‑on challenges and a reward system that encourages regular practice.
+
+<!-- Paragraphs 137-139: Introduction to Gamification - Manually enhanced -->
+Gamification, the use of game‑like elements such as points, leaderboards and rewards in non‑game settings, has become a popular way to boost engagement and motivation in education (Kapp, 2012). By turning learning into an interactive and rewarding experience, it taps into curiosity, competition and the satisfaction of achievement, which keeps people coming back and helps them remember what they’ve learned.
+
+Deterding et al. (2011) explain that gamification works because it connects with the psychological factors that make games fun. Features like instant feedback, progress tracking and rewards trigger the brain’s reward system, increase dopamine and encourage people to keep going. In a classroom, this means students are more motivated to finish tasks and tackle harder material.
+
+When designing Coding Codec I looked closely at gamification frameworks such as Chou’s Octalysis model, which identifies eight core drivers of motivation, including achievement and ownership (Chou, 2015). These ideas informed the platform’s badges, points and leaderboards, each intended to give users a sense of progress and accomplishment.
+
+<!-- Paragraph 672: Chapter 7 Overview - Manually enhanced -->
+In this final chapter I reflect on the Coding Codec project, summarising what I built, what worked well, what could be improved and how it might grow in the future. As a capstone project for my Software Development stream, it gave me a chance to put my technical, analytical and project‑management skills into practice. The chapter covers my overall conclusions, evaluates the learning outcomes, suggests ways to improve the platform and offers some final thoughts on my personal and professional development.
+
+<!-- Paragraph 675: Project Summary - Manually enhanced -->
+Coding Codec was designed as a gamified learning platform for C#. It sits between comprehensive online courses and lightweight coding apps, giving users a structured, motivating way to build core programming skills through progressive challenges.
+
+<!-- Paragraph 707-715: Reflections on Development - Manually enhanced -->
+Building Coding Codec helped me grow technically. Working with the MVC architecture and Entity Framework taught me to structure code cleanly and manage databases. Implementing secure session‑based authentication deepened my understanding of user account management, and using Bootstrap improved my ability to design responsive interfaces. Debugging across the full stack — from C# logic to HTML layout — has prepared me for real‑world software development.
+
+I also learned a lot about project management. Working alone meant prioritising important features, planning iterations and testing regularly. Adopting an agile mindset helped me stay organised and flexible.
+

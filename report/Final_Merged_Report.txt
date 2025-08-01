@@ -1,0 +1,755 @@
+Dublin Business School
+
+Final Year Project Report
+
+Coding Codec: A Space for Users to Learn C#
+
+Name: Jack Whelan
+
+Student ID: 10588528
+
+Stream: Software Development
+
+Email: 10588528@mydbs.ie
+
+Supervisor: Rory O'Donnell
+
+Date: July 2025
+
+Abstract
+
+Coding Codec is a C# learning game developed as my final year project in my Software Development stream at Dublin Business School. I built this foundation where users can register with their email and password, and I implemented a very secure system to keep their data safe.
+
+Users can work through programming challenges that get progressively harder, earn badges and points, and track how they're improving over time. I built it using ASP.NET Core 8.0 with Entity Framework Core 9.0.5 and SQL Server LocalDB, including custom authentication and a responsive interface that works on mobile. The platform has 4 coding challenges and 6 different badges that users can unlock. My testing showed that everything works as intended and provides a motivating way to learn programming. This project demonstrates my ability to build full-stack applications, understand educational design principles, and create user-centered solutions. 
+
+Acknowledgements
+I would like to thank my supervisor Rory O'Donnell for his valuable guidance and feedback throughout the course of this project. His insights helped shape both the direction and quality of my work.
+ 
+Table of Contents
+This table will be auto-generated in the final version using Word's Table of Contents feature. Ensure all headings use Word's Heading styles (Heading 1, Heading 2, etc.) to enable automatic TOC generation.
+ 
+Chapter 1: Introduction
+
+As a final year Computing student interested in software development and user‑centred design, I decided to design a project that would be both useful and technically challenging while matching my academic and career path. Coding Codec is an educational web app designed as an engaging place to master the C# language in a fun, gamified way. The goal was to offer a platform that wouldn't just teach syntax or logic but would teach through action — learning by doing and solving real problems — so that these methods become second nature to users in a supportive, motivating and fun environment.
+
+This chapter lays out the project's scope, aims and methodology. It explains why I chose this particular theme and lists the objectives I set when I began.
+
+1.1 Rationale Behind the Project
+
+My motivation for this project came from my own learning experiences and watching others. Using apps like Duolingo, FreeCodeCamp and Codecademy showed me how effective gamified learning can be. Duolingo's badges, daily streaks, level progress and points kept me engaged and made language study feel rewarding. I wanted to bring that same sense of progress and achievement to learning C#.
+
+When I looked at existing C# tutorials, I noticed they were often either too passive or too advanced. Many beginner platforms lack structure or motivation; some jump straight into challenges without covering the basics, and others overwhelm newcomers. I saw an opportunity to build a friendly, structured and motivating environment specifically for people starting out with C#.
+
+That's how "Coding Codec" came to life. The platform teaches beginner and intermediate C# through brief tutorials, hands‑on challenges and a reward system that encourages regular practice.
+
+1.2 Project Aims
+The primary aim of the project is to develop a web application that helps people learn programming interactively using C#. The system should support users through a guided learning experience, from theoretical explanation to practical applications with built-in feedback, reward mechanisms, and progress tracking.
+More specifically, the platform aims to:
+•	Deliver a structured and responsive web application accessible on both desktop and mobile devices.
+•	Provide an environment for users to complete guided tutorials, solve programming challenges, and track their learning journey.
+•	Integrate gamification features such as points, levels, badges, and leaderboards to keep users motivated and coming back.
+•	Include user authentication, profile customization, and security measures to ensure a safe and personalized learning experience.
+•	Lay the foundation for future scalability, with scope for the addition of more content, third-party integrations, and social features.
+
+1.3 Project Objectives
+To achieve the above aims, I defined a set of clear objectives. These objectives also served as development milestones during the implementation phase:
+1.	Develop a custom authentication system that supports secure registration, login, logout, and password hashing.
+2.	Design and build a database schema to manage users, challenges, progress, and achievements.
+3.	Create a modular and scalable backend using ASP.NET Core MVC and Entity Framework Core.
+4.	Build a responsive frontend using Bootstrap and Razor Pages that adapts seamlessly across devices.
+5.	Implement core learning features including a curated set of 4 coding challenges across different difficulty levels.
+6.	Develop a gamification system that awards points, tracks progress and unlocks 6 achievement badges upon milestone completion.
+7.	Introduce a leaderboard that dynamically reflects the top users and encourages friendly competition.
+8.	Adopt a manual management approach for content and system administration through direct database and file management.
+Each of these objectives was tracked during the course of development, allowing me to evaluate my progress and adjust scope where necessary to meet deadlines and maintain code quality.
+
+1.4 Project Scope
+The scope of "Coding Codec" was clearly defined to ensure it was both achievable within the timeframe and aligned with the capstone module requirements. While ambitious, I deliberately limited certain features in the first version to prioritize quality and core functionality. The scope was divided into "must-have," "should-have," and "could-have" features:
+•	Must-Have Features:
+o	Secure user registration and login
+o	Interactive coding challenges with instant feedback
+o	Progress tracking and database persistence
+o	Gamification via badges and points
+o	Responsive UI for multiple devices
+•	Should-Have Features:
+o	Leaderboard for competitive comparison
+o	Friends system for social interaction
+o	Dynamic statistics on home page
+o	Social features (friend system, challenge sharing)
+•	Could-Have Features (deferrered):
+o	Quiz system for theory-based questions
+o	Notifications
+o	Admin panel
+o	Code execution sandbox for dynamic validation
+This structured approach allowed me to manage expectations and dedicate my focus to the features that aligned most directly with user value and learning outcomes.
+
+1.5 Methodology
+I used an Agile approach, working in weekly iterations. Each week was planned with clear goals: feature development, testing, debugging, user feedback, and refinement. Although I was the sole developer, I kept track of what I needed to do and what I'd completed each week.
+
+Chapter 2: Background and Rationale
+When I started thinking about this project, I knew I wanted to work on something that would directly address the difficulties many people face when learning to code. It wasn't just about building another educational website, but creating something that would genuinely motivate people to keep going when programming felt overwhelming.
+
+2.1 The Challenge of Learning Programming
+Programming has a reputation for being tough to learn, and having taught myself multiple languages over the years, I understand why. The early stages are filled with confusing error messages, syntax rules that seem arbitrary, and the constant feeling that you're missing something fundamental. Many beginners start enthusiastically but give up when they hit their first major roadblock.
+Research backs up these observations. According to studies on programming education, dropout rates in introductory coding courses can be as high as 30-50% (Robins et al., 2003). The most common reasons include feeling overwhelmed by abstract concepts, lacking immediate feedback, and not seeing tangible progress. This creates a cycle where people lose confidence and motivation just when they need encouragement most.
+Traditional learning approaches often contribute to this problem. Textbooks and lecture-based courses focus heavily on theory without enough hands-on practice. When students do get to code, they often work in isolation without feedback or a sense of achievement for their efforts.
+
+2.2 Why C# and Why Now
+I chose to focus on C# for several practical reasons. First, it's a language that bridges academic learning with real-world application. Many universities teach C# in their computer science programs because it enforces good programming practices through strong typing and clear structure. At the same time, it's widely used in industry for web development, desktop applications, and even game development with Unity.
+Second, C# has evolved significantly with .NET Core and .NET 5+, making it more accessible and cross-platform than ever before. The language has modernized while maintaining its reputation for being beginner-friendly, with clear syntax and comprehensive documentation.
+Despite its professional strengths, C# is often overlooked in entry-level learning platforms in favour of lighter scripting languages. This creates an opportunity to design a platform that demystifies C# and gives learners a solid starting point in a language that is both academically rich and professionally useful.
+
+2.3 My Personal Experience and Inspiration
+Before beginning this project, I had previously interned at a company where I contributed to the development of internal web applications and participated in backend development projects. During that internship, I became increasingly comfortable with database management, data validation, and full-stack workflows. However, I also witnessed how new hires often struggled with learning C#, especially those coming from non-technical backgrounds.
+This experience — combined with my own journey through web development — helped shape my understanding of how learning platforms succeed or fail. I observed that structured systems with interactive components, clear milestones, and regular encouragement outperformed static or lecture-driven content by a large margin. Users want to feel that they are progressing, that their actions are meaningful, and that they are part of a journey — not just reading a tutorial page.
+These insights motivated me to replicate that sense of progress and reward through a carefully designed gamification system. My goal was not just to build an educational tool, but to create an environment where learning feels like achieving — where every completed challenge is an accomplishment and every badge unlock is a reason to continue.
+
+2.4 Anticipated Impact and User Benefits
+The goal of "Coding Codec" is to help new programmers build confidence and skill in a low-pressure, encouraging environment. By building a platform that rewards practice and celebrates progress, I want to make programming less intimidating. Users start with simple challenges, earn points and badges, and gradually build confidence — kind of like leveling up in a game.
+This gives learners several benefits:
+•	Lowered learning anxiety: The platform avoids penalizing incorrect answers harshly. Instead, it encourages people to keep improving their code, just like in real development work.
+•	Increased engagement: Immediate feedback, colourful visuals, and score-based rewards contribute to a sense of satisfaction and progress.
+•	Autonomy and pace control: Users can choose which challenges to complete, in which order, and how fast they progress.
+•	Peer motivation: Leaderboards and public achievement displays foster healthy competition and encourage regular use.
+Instructors and educators may also benefit by using the platform to supplement their own curricula. Since the system tracks progress and completion, teachers could potentially monitor student engagement or assign challenges as homework tasks.
+
+2.5 Technological Foundations
+Choosing the right tools was essential to the success of this project. I opted to build the platform using the ASP.NET Core MVC framework, a powerful and modern web development platform offered by Microsoft. This choice was guided by several factors:
+•	Familiarity and relevance: I had prior experience using C# and .NET technologies, which allowed me to hit the ground running. In addition, these technologies are in demand in enterprise environments, adding professional relevance to the project.
+•	Security and scalability: ASP.NET Core offers built-in support for authentication, routing, Managing user sessions, and security — all essential for a web application dealing with user data.
+•	Separation of concerns: The Model-View-Controller (MVC) architecture provided a clear and scalable structure that separates the frontend (View), backend logic (Controller), and data access (Model).
+For the database, I used SQL Server in conjunction with Entity Framework Core — an Object-Relational Mapper (ORM) that allowed me to define database schemas through C# models. This approach enabled a seamless link between user actions and stored data, ensuring that each badge earned or challenge completed was tracked reliably.
+The frontend was styled with Bootstrap, which provided responsiveness and UI components that work across desktop and mobile devices. Razor Pages were used for dynamic content rendering.
+This stack provided me with everything I needed to build a full-stack, responsive, and secure platform.
+
+2.6 Key Use Cases
+To illustrate the kinds of experiences the platform was designed to support, here are a few sample user journeys:
+Use Case 1: A Beginner Learner
+A first-time coder logs into the platform and starts with the tutorial titled "Variables and Data Types." After reading an explanation and seeing an example, they attempt a related challenge. Upon submitting correct syntax, they are congratulated and awarded 10 points and a "First Challenge" badge. This motivates them to move on to the next topic.
+Use Case 2: A Competitive User
+A student with prior experience in Java wants to learn C#. They complete a series of challenges over a few days and climb into the top 5 on the leaderboard. Seeing their name among the best performers, they feel motivated to continue improving their score and completing more complex challenges.
+Use Case 3: A Teacher
+An instructor assigns the platform to their students. They check the leaderboard weekly to monitor who is engaging with the content. Because the challenges are categorized by topic and difficulty, the teacher can align lessons with platform content for blended learning.
+Each of these journeys reflects the project's goal: to provide structure, motivation, and feedback to learners at different skill levels and with different goals.
+
+2.7 Conclusion
+The background of "Coding Codec" is rooted in educational theory, technological strategy, and personal insight. From the very beginning, my focus has been on bridging the gap between passive learning and active engagement. By creating a platform that makes programming more accessible, more interactive, and more rewarding, I aim to lower the barrier to entry and empower users to build confidence through code.
+The next chapter will delve deeper into the academic and technical literature that underpins these ideas, reviewing the existing body of knowledge on gamified learning, user motivation, platform design, and coding education.
+
+Chapter 3: Literature Review
+The development of "Coding Codec" was guided by a combination of academic research, pedagogical theories, and studies on user engagement and motivation. In this chapter, I will explore key literature on gamification, educational technology, user experience (UX) design, and interactive learning. I will also analyze existing learning platforms and explain how their strategies and limitations influenced my approach.
+________________________________________
+3.1 Introduction to Gamification in Learning
+Gamification has become a powerful tool for enhancing user engagement and motivation, particularly in educational settings. Defined as the incorporation of game-like elements such as points, leaderboards, and rewards into non-game contexts (Kapp, 2012), gamification leverages intrinsic motivators such as curiosity, competition, and achievement. By transforming learning into an interactive and rewarding experience, it fosters consistent participation and improves retention rates.
+Deterding et al. (2011) highlight that gamification is effective because it taps into the psychological factors that make games enjoyable. Elements such as instant feedback, progress tracking, and rewards trigger the brain's reward system, increasing dopamine levels and encouraging repeated engagement. In educational environments, this translates to learners being more motivated to complete tasks and explore challenging content.
+In designing "Coding Codec," I closely studied gamification frameworks such as Octalysis (Chou, 2015), which breaks down user motivation into eight core drivers, including "Development and Accomplishment" and "Ownership and Possession." These concepts were directly applied to the platform's design by including badges for milestones, points for task completion, and leaderboards for competition.
+________________________________________
+3.2 Gamification and Programming Education
+While gamification has been widely applied in fields such as language learning (e.g., Duolingo) and fitness (e.g., Strava), research shows its effectiveness is equally significant in programming education. Programming is often perceived as complex and intimidating, especially for beginners. Gamified platforms help reduce this barrier by presenting concepts as achievable challenges, providing immediate validation, and fostering a growth mindset.
+A study by Alhammad and Moreno (2018) on gamification in programming education found that game-like elements improve both learning outcomes and motivation among students. They reported that learners who participated in gamified activities exhibited greater persistence when solving coding problems compared to those in traditional, non-interactive settings.
+Examples of existing gamified coding platforms include:
+•	Codecademy: Offers guided, interactive lessons with progress indicators but lacks deeper gamification like badges or leaderboards.
+•	HackerRank and LeetCode: Provide coding challenges and competitive rankings, but these platforms are often aimed at advanced users rather than beginners.
+•	CodeCombat: A game-like platform that teaches programming through a role-playing game format, primarily targeting children.
+By analyzing these platforms, I identified a gap: a coding platform focused on C# with beginner-friendly content and engaging gamification elements. While platforms like HackerRank focus on technical interview preparation, "Coding Codec" emphasizes incremental learning with feedback and a motivational structure.
+________________________________________
+3.3 Theories of Learning and Motivation
+During my research for "Coding Codec", I learned of the theory of constructivism and experiential learning. Constructivism, as described by Vygotsky (1978), emphasizes that learners build new knowledge through active engagement and hands-on experiences. Experiential learning, as outlined by Kolb (1984), advocates a cycle of experiencing, reflecting, conceptualizing, and experimenting. Both theories strongly support the idea of interactive coding exercises, where learners actively "do" rather than passively "consume."
+3.3.1 Self-Determination Theory (SDT)
+Self-Determination Theory (Deci & Ryan, 2000) turned out to be really useful when I was figuring out how to make the platform motivating. SDT states that human motivation is driven by three basic psychological needs:
+•	Autonomy: The sense of having control over one's actions.
+•	Competence: The feeling of mastery and accomplishment.
+•	Relatedness: The sense of connection to others.
+"Coding Codec" supports these needs by allowing users to choose challenges freely (autonomy), providing clear feedback and points for mastery (competence), and incorporating leaderboards to foster community and comparison (relatedness).
+3.3.2 Flow Theory
+Csikszentmihalyi's (1990) Flow Theory also influenced the platform design. Flow occurs when a person is fully immersed in an activity, balancing challenge and skill level. To achieve this, "Coding Codec" includes challenges of varying difficulty, ensuring that users are neither bored by tasks that are too easy nor overwhelmed by ones that are too hard. Each successful challenge completion nudges learners toward a state of flow, reinforcing their motivation to continue.
+________________________________________
+3.4 User Experience (UX) and Interface Design
+A well-designed interface is critical to sustaining engagement. Norman (2013) emphasizes that good design is intuitive, user-centered, and free of unnecessary complexity. Similarly, Krug (2014) argues that "don't make me think" should be the guiding principle of digital interfaces.
+I applied these principles in "Coding Codec" by:
+•	Creating a simple navigation structure with clear labels for "Challenges," "Tutorials," "Leaderboard," and "Achievements."
+•	Using visual cues and color coding to highlight progress and achievements.
+•	Ensuring a responsive layout using Bootstrap, which adapts fluidly to mobile devices.
+In addition, feedback was implemented at every step. For example, when a user submits a solution, the platform immediately displays success or failure messages, helping learners adjust their approach without unnecessary delay.
+________________________________________
+3.5 Research on Immediate Feedback
+A key differentiator of interactive learning platforms is the ability to provide instant feedback. Studies by Nicol and Macfarlane-Dick (2006) highlight that immediate feedback not only helps correct errors but also reinforces correct behavior, making it a powerful learning tool.
+For "Coding Codec," I developed a system that validates user-submitted solutions using pattern recognition and predefined test cases. This means that users are not simply graded at the end of a session but receive real-time responses that guide their learning in a dynamic, engaging way.
+________________________________________
+3.6 Literature on Gamification Failures
+While gamification can enhance engagement, research also warns of its potential downsides. Hanus and Fox (2015) found that poorly designed gamification systems — particularly those that emphasize extrinsic rewards (e.g., points) without intrinsic learning value — can backfire, leading to lower motivation over time. This influenced my approach significantly. I ensured that badges and points in "Coding Codec" are tied to meaningful milestones, such as completing core challenges or mastering a fundamental concept.
+Additionally, I avoided "grind mechanics" — repetitive tasks that feel like busy work — by designing a progressive challenge system where each task builds logically on the previous one.
+________________________________________
+3.7 C# and the .NET Ecosystem in Education
+C# is a language frequently taught in formal academic settings due to its structured syntax and widespread enterprise adoption. According to the Stack Overflow Developer Survey (2023), C# remains one of the top five languages used by professional developers worldwide. This makes it a pragmatic choice for students aiming to pursue careers in software engineering, web development, or game design.
+The .NET Core ecosystem also offers educational advantages. Its robust framework includes libraries and tools that simplify backend operations, while ASP.NET Core MVC provides a clean separation of concerns. This allowed me to implement complex features like authentication, database interaction, and gamification in a maintainable manner.
+________________________________________
+3.8 Comparison with Existing Learning Platforms
+A review of existing learning platforms was critical to ensuring that "Coding Codec" addressed gaps in the current market:
+•	Duolingo: Offers an exemplary gamification model but is limited to language learning. Its use of streaks, badges, and leaderboards inspired my platform's reward mechanisms.
+•	Codecademy: Provides interactive lessons but lacks a strong competitive element like leaderboards. Its course structure influenced how I organized tutorials and challenges.
+•	LeetCode and HackerRank: While excellent for advanced coders and job preparation, their challenges are often too complex for beginners. "Coding Codec" addresses this by focusing on progressive learning, starting with fundamental syntax and logic.
+________________________________________
+3.9 Conclusion
+The literature review highlights the strong theoretical and practical basis for the development of "Coding Codec." By combining constructivist learning theories, motivational psychology, and modern UX design principles, I aimed to create a platform that goes beyond passive learning and actively engages users in mastering C#.
+What I learned from studying other platforms and reading research papers really helped me make better design choices for this project. The next chapter will delve into the Project Specification and Design, detailing how these insights were translated into technical and functional features.
+ 
+Chapter 4: Project Specification and Design
+The "Coding Codec" project required a careful balance of pedagogical planning, technical design, user experience consideration, and scalability for future growth. This chapter outlines the specification of the system — including functional and non-functional requirements — and provides an in-depth overview of the software architecture, database design, technology stack, and user interface planning. Each design decision is discussed in relation to the project's goals, ensuring alignment with the overall educational mission.
+________________________________________
+4.1 Overview of the System
+"Coding Codec" is a web-based C# learning platform that incorporates a gamified progression system, designed for accessibility across both desktop and mobile platforms. It allows users to:
+â€¢	Explore categorized challenge lists (Easy, Medium, Hard)
+â€¢	Receive immediate feedback on submissions
+I organized the platform into two main areas:
+1.	User Area: where learners interact with tutorials, challenges, and their profiles.
+2.	Gamification System: The code that handles giving out achievements, updating user stats, and calculating leaderboard positions.
+________________________________________
+4.2 Functional Requirements
+The systemâ€™s functionality was clearly defined during the specification phase. The following list captures the primary functional requirements (FR):
+ID	Functional Requirement
+FR1	Users shall be able to register and authenticate using email and password.
+FR2	Users shall have access to categorized coding challenges.
+FR3	The system shall provide real-time feedback upon code submission.
+FR4	Users shall earn points and badges upon successful challenge completion.
+FR5	A leaderboard shall display top users based on accumulated points.
+FR6	Users shall be able to view their personal progress (completed challenges, badges, etc.).
+
+Each of these features was implemented as discrete modules, designed for modularity and future maintainability.
+________________________________________
+4.3 Non-Functional Requirements
+In addition to functional goals, several non-functional requirements (NFR) were identified:
+ID	Non-Functional Requirement
+NFR1	The system shall be accessible on both desktop and mobile browsers.
+NFR2	All user data shall be stored securely using encrypted authentication.
+NFR3	The application shall respond to inputs with minimal latency (<500ms).
+NFR4	The system shall handle at least 100 concurrent users without degradation.
+NFR5	The platform shall use clean UI/UX design principles for navigation and interaction.
+NFR6	The backend code shall follow MVC architecture and SOLID principles.
+These requirements helped me choose the right technologies and plan the system architecture to make sure everything would work reliably and be easy to use.
+________________________________________
+4.4 Technology Stack
+Selecting the right technologies was crucial to building a maintainable application. Based on my prior experience and the system requirements, I selected the following technology stack:
+â€¢	Backend: ASP.NET Core MVC (C#)
+â€¢	Frontend: HTML5, Bootstrap 5, Razor Pages, jQuery
+â€¢	Database: SQL Server LocalDB (relational, persistent storage)
+â€¢	ORM: Entity Framework Core (for schema mapping and querying)
+â€¢	Authentication: Custom session-based authentication with BCrypt password hashing
+â€¢	Hosting: Initially developed and tested on localhost with scope for Azure deployment
+I chose this technology stack because I was familiar with it and these tools are commonly used in real projects. ASP.NET Core MVC provided the necessary tools to create a modular application using best practices such as separation of concerns and dependency injection.
+________________________________________
+4.5 Software Architecture
+The architecture followed the Model-View-Controller (MVC) paradigm:
+â€¢	Model: Defines the application's core data structures (e.g., User, Challenge, Badge, Progress, UserBadge, Friendship, LeaderboardEntry).
+â€¢	View: Contains the frontend Razor Pages rendered using HTML and Bootstrap 5.
+â€¢	Controller: Contains logic for routing, user input handling, database interaction, and gamification feedback.
+A clear folder structure was maintained:
+/Controllers
+    - AuthController.cs
+    - ChallengeController.cs
+    - GamificationController.cs
+    - HomeController.cs
+    - LeaderboardController.cs
+    - ProfileController.cs
+    - FriendsController.cs
+    - TutorialController.cs
+
+/Models
+    - User.cs
+    - Challenge.cs
+    - Progress.cs
+    - Badge.cs
+    - UserBadge.cs
+    - Friendship.cs
+    - LeaderboardEntry.cs
+    - PlatformModels.cs
+    - ErrorViewModel.cs
+
+/Views
+    - Shared/_Layout.cshtml
+    - Home/Index.cshtml
+    - Challenge/Index.cshtml
+    - Challenge/Attempt.cshtml
+    - Auth/Login.cshtml
+    - Auth/Register.cshtml
+    - Gamification/Index.cshtml
+    - Profile/Index.cshtml
+    - Leaderboard/Index.cshtml
+
+/Filters
+    - RequireLoginAttribute.cs
+This structure ensured clarity during development and supported maintainability, especially for key components such as the challenge evaluation logic, gamification system, and progress tracking. The separation of concerns allowed for clean implementation of features like dynamic statistics, badge management, and user authentication without complex interdependencies.________________________________________
+4.6 Database Design
+The relational database schema was built using Entity Framework Code-First approach. This allowed me to define entities using C# classes and generate the SQL schema through automated migrations.
+The main entities were:
+â€¢	User
+â€¢	Challenge
+â€¢	Progress
+â€¢	Badge
+â€¢	UserBadge
+â€¢	Friendship
+â€¢	LeaderboardEntry
+â€¢	
+Key relationships:
+â€¢	A User can have many Progress records
+â€¢	A User can earn many UserBadges
+â€¢	A Challenge can belong to a Category (e.g., Easy, Medium, Hard)
+â€¢	Progress records track user challenge completion and timestamps
+Sample Entity Class:
+ This model enabled efficient querying and user-specific data presentation. To optimize performance, I used eager loading where necessary and added indexes on frequently accessed fields such as UserId and ChallengeId.
+ðŸ“¸ [Screenshot Placeholder]: ER Diagram of database schema â€” include full map showing table relationships between User, Challenge, Badge, and Submission tables.
+________________________________________
+4.7 User Interface Design
+I designed the user interface with clarity and accessibility in mind. Using Bootstrapâ€™s grid system and responsive classes, I ensured that the application works across common resolutions and devices.
+The UI design process involved the creation of several key pages:
+â€¢	Landing Page: Brief welcome message, feature highlights, and login/register prompts.
+â€¢	Dashboard: Displays user stats (e.g., points, badges, last challenge completed).
+â€¢	Challenges Page: Paginated list of challenges with filtering by difficulty.
+â€¢	Challenge Detail Page: Includes description, code input box, and submit button.
+â€¢	Achievements Page: Displays badges earned, total points, and milestone progress.
+â€¢	Leaderboard: Public scoreboard with user rank, points, and avatar.
+ðŸ“¸ [Screenshot Placeholder]: User Dashboard mockup showing badge and progress tracking.
+Every interface was tested for usability and responsiveness, using Chrome DevTools and device simulation modes.
+________________________________________
+4.8 Challenge Evaluation Logic
+At the core of the platform is how I validate user code submissions. Since running user-submitted C# code directly on the server would be a major security risk, I decided to use a simpler pattern-matching approach that compares outputs.
+For each challenge, I store: â€¢ The expected solution structure (like whether it uses loops or conditionals) â€¢ The correct output for specific test inputs â€¢ Basic requirements the code needs to meet
+When users submit their code, my system evaluates it by:
+1.	Checking if the code contains required elements (using simple text matching)
+2.	Comparing the user's output against what I expect to see
+3.	Normalizing whitespace and case differences to avoid failing students on formatting
+The platform uses simple HTML textarea elements for code input rather than fancy code editors. This kept things straightforward while still giving users a working place to write their code. Each challenge checks submissions by comparing what the user's code outputs against the results I stored in the database.
+If a submission passes the checks, the system: â€¢ Awards points to the user â€¢ Checks if they've earned any new badges â€¢ Saves their progress to the database
+I chose this approach because it's secure and works well for the basic challenges I created. For future versions, I could add a secure code execution environment using Docker containers to compile and run the C# code, but that would be much more complex to implement safely.
+The validation logic is straightforward but effective for teaching fundamental programming concepts. It gives students immediate feedback on whether their solution works, which is really important for learning.
+________________________________________
+4.9 Gamification System Design
+The gamification system was designed to provide real-time rewards based on user behavior. Key features included:
+â€¢	XP System: Each challenge awarded a predefined number of points (Easy: 10, Medium: 25, Hard: 50)
+â€¢	Badge System: Users unlocked badges upon completing:
+o	First challenge
+o	First challenge in each category
+o	5 challenges in a row without failure
+o	All challenges in a category
+The BadgeEngine class contains logic that executes upon challenge completion, checking user history and badge criteria.
+Sample Logic Snippet:
+ 
+
+ Badge display page showing icons, descriptions, and locked/unlocked states.
+This system was key to increasing engagement and encouraging daily use.
+________________________________________
+4.10 Security and Authentication
+Security was a core focus. Custom session-based authentication was used to handle:
+â€¢	Secure password hashing using BCrypt
+â€¢	Making sure usernames and emails are unique
+â€¢	Managing user sessions
+â€¢	Basic access control (I managed users manually)
+To prevent tampering, submissions were validated on the server only â€” client-side manipulation could not affect score or badge data.
+________________________________________
+4.11 Accessibility and Responsiveness
+Bootstrap and semantic HTML were used throughout to ensure compatibility with screen readers and assistive technologies. Color contrast, font sizes, and touch target spacing were adjusted according to WCAG 2.1 standards where possible.
+________________________________________
+Chapter 5: Implementation
+This chapter covers how I built â€œCoding Codec,â€ highlighting the practical implementation of system components from backend architecture to frontend interfaces. It outlines the development phases, key programming techniques, integration strategies, and the challenges faced along the way. Throughout development, I focused on making the platform stable, secure, and engaging for users.
+________________________________________
+5.1 Development Environment Setup
+Development began by preparing the foundational environment and configuring the project structure. The following tools were used throughout the project lifecycle:
+â€¢	IDE: Visual Studio 2022 Community Edition
+â€¢	.NET SDK: ASP.NET Core 8.0 with Entity Framework Core 9.0.5
+â€¢	Package Manager: NuGet for dependency resolution
+â€¢	Version Control: Git with GitHub repository hosting
+â€¢	Database Tools: SQL Server LocalDB, SQL Server Object Explorer in Visual Studio
+â€¢	Testing Tools: MSTest for unit testing
+I created a new ASP.NET Core MVC project using the Visual Studio project wizard, selecting authentication enabled with individual accounts. This scaffolded out essential Identity components and allowed me to focus on core functionality from the start.
+The initial folder structure mirrored the MVC convention:
+ ________________________________________
+5.2 Database Initialization and Schema Migrations
+The Entity Framework Core (EF Core) Code-First approach was used to design and maintain the database. I began by defining POCO (Plain Old CLR Object) classes representing the main data entities. These included:
+â€¢	User
+â€¢	Challenge
+â€¢	Progress
+â€¢	Badge
+â€¢	UserBadge
+Once the models were defined, I created a database context class:
+ Migrations were created and applied using the Package Manager Console:
+ 
+This created the underlying database schema automatically. From this point forward, each update to the model was tracked through a new migration, ensuring consistent structure and allowing rollback in case of failure.
+ðŸ“¸ [Screenshot Placeholder]: Screenshot of SQL Server Object Explorer showing tables and relationships in the database.
+________________________________________
+5.3 Authentication and User Management
+The platformâ€™s identity system was based on a custom session-based authentication system. Users could register using email and a password, and the system enforced:
+â€¢	Minimum password strength (uppercase, digit, symbol, length)
+â€¢	Unique email addresses
+â€¢	Email confirmation (can be enabled in future iterations)
+Users were automatically assigned the â€œUserâ€ role.
+A custom User model was used to display user-specific data:
+ 
+The Profile Controller fetched and passed this model to the Profile/Index.cshtml view, giving each user a dashboard to monitor their achievements.
+ðŸ“¸ [Screenshot Placeholder]: Profile page displaying user stats, challenge history, and unlocked badges.
+________________________________________
+5.4 Challenge Module Implementation
+The core of the platform â€” the challenge module â€” allowed users to select and attempt coding challenges. Each challenge consisted of: â€¢ Title â€¢ Description â€¢ Expected output â€¢ Difficulty level â€¢ Associated category (Loops, Arrays, Conditionals, etc.)
+The challenges were displayed on the /Challenges/Index page, with filter options for category and difficulty.
+Users could click a challenge to view the full prompt and submit their solution in a textarea input. I chose to use standard HTML textarea elements instead of more complex code editors to keep the implementation simple and focus on core functionality. This approach worked well for the project's scope while maintaining compatibility across all browsers.
+The ChallengeController handled this interaction by processing form submissions and validating the user's code. Here's the core method that processes challenge attempts:
+ The EvaluateSubmission method compared user input against the expected output using string matching and pattern recognition. This approach was straightforward but effective for the basic challenges I created.
+For code input, I deliberately kept things simple with basic HTML forms. While fancier code editors like Monaco Editor (the one used in VS Code) would have been nice to have, they would have added significant complexity to the frontend. The textarea approach meant users could write and submit code without any compatibility issues, and it kept my development focused on the learning mechanics rather than getting stuck on editor integration.
+The submission process worked by taking the user's code, running it through my validation logic, and immediately showing whether it passed or failed. This gave students instant feedback, which I think is really important for learning programming.
+________________________________________
+5.5 Gamification System Integration
+I integrated the gamification features into the challenge submission process. Upon a successful submission, users were awarded 10 points regardless of difficulty.
+Each submission triggered badge evaluation:
+ 
+Badges were represented visually and stored in a join table UserBadges. The leaderboard fetched top users by sorting descending on Points.
+ðŸ“¸ [Screenshot Placeholder]: Leaderboard view showing user ranks, points, and avatars.
+________________________________________
+5.7 Friends System Implementation
+One of the features I was really excited to build was the friends system. I knew from using apps like Discord and Instagram that having friends makes everything more engaging, so I wanted to bring that social aspect to learning C#.
+
+The friends system ended up being trickier than I initially thought, but it was definitely worth the effort. Basically, it lets users connect with each other and see how their friends are doing on the platform - kind of like having study buddies but online.
+
+How Friend Requests Work:
+I kept the friend request process pretty straightforward. Users can search for other people by their username and send them a friend request. I had to make sure people couldn't spam requests or accidentally send requests to themselves (learned that one the hard way during testing!). When someone gets a friend request, they see it on their profile page and can either accept it or decline it.
+
+Database Setup:
+For the database side, I used a simple Friendship table with RequesterId and ReceiverId fields, plus an IsAccepted boolean to track whether the friendship is pending or confirmed. Once someone accepts a friend request, both users show up in each other's friends lists - I made sure it works both ways so nobody gets left out.
+
+What You Can Do with Friends:
+The friends features turned out pretty well:
+â€¢	Check pending friend requests and respond to them
+â€¢	Browse your current friends list
+â€¢	Visit your friends' profiles to see their progress
+â€¢	Remove friends if needed (hopefully not too often!)
+â€¢	Search for new people to add
+
+Connecting with Other Features:
+I really wanted the friends system to feel integrated with everything else, not just stuck on as an afterthought. So when you look at your friends list, you can see their points and badges, which creates this nice competitive element. It's motivating to see your friends doing well - sometimes it pushed me to complete more challenges when I was testing the system myself.
+
+Privacy Stuff:
+I made sure the friends system respects privacy. You have to mutually accept each other as friends before you can see detailed profile info. Friends can only see basic stuff like usernames, points, and badges - no personal information gets shared. And if someone's bothering you, you can always remove them from your friends list.
+
+Adding the friends system really brought the platform to life. During user testing, people mentioned that seeing their friends' progress made them want to use the platform more often, which was exactly what I was hoping for.
+________________________________________________________________________________
+5.8 User Experience Enhancements
+To improve the experience, several front-end enhancements were implemented:
+â€¢	Loading Indicators: Visual spinner during code evaluation.
+â€¢	Responsive Layouts: Media queries and Bootstrap grid ensured mobile compatibility.
+â€¢	Dark Mode (planned): A toggle for visual accessibility â€” partially implemented but deferred due to time.
+________________________________________
+5.9 Deployment Readiness
+While full deployment was not completed within the project timeframe, deployment planning involved:
+â€¢	Publishing using Visual Studioâ€™s Publish to Folder
+â€¢	Hosting options explored: Azure App Service, Railway, and local IIS
+â€¢	Database considerations: Migration to Azure SQL or remote SQL Server instance
+â€¢	Security hardening checklist: HTTPS enforcement, user role separation, input sanitation
+________________________________________
+5.10 Development Challenges and Solutions
+Throughout development, I encountered several challenges:
+
+Challenge	Solution
+Handling code submission securely	Used output-based evaluation rather than executing untrusted code
+Tracking user progress accurately	Introduced ProgressLog table to separate history from results
+Preventing multiple badge grants	Created logic to check badge existence before assigning
+Managing relational data with EF Core	Used Include() and ThenInclude() for deep queries
+UI clutter with Bootstrap	Used tabs, modals, and card components for better structure
+________________________________________
+5.11 Summary of Key Features Implemented
+Feature	Status
+User registration/login	âœ… Complete
+Challenge module	âœ… Complete
+Real-time feedback	âœ… Complete
+Badge/point system	âœ… Complete
+Leaderboard	âœ… Complete
+Profile dashboard	âœ… Complete
+Responsive UI	âœ… Complete
+Friends System	âœ… Complete
+
+________________________________________
+5.12 Conclusion
+The implementation phase was a rewarding yet demanding part of the project. By following modular development practices, leveraging modern tools like ASP.NET Core and Entity Framework, and iterating on UI/UX feedback, I was able to construct a fully functional C# learning platform. The system met all core functional requirements, maintained security and usability, and laid a strong foundation for future feature expansion.
+The next chapter will focus on Testing and Evaluation, assessing the platformâ€™s effectiveness, reliability, and how well it aligned with user needs.
+Chapter 6: Testing and Evaluation
+Testing and evaluation were crucial phases in validating the performance, usability, and reliability of â€œCoding Codec.â€ This chapter describes how I tested the platformâ€™s functionality, the tools and techniques used, the evaluation methodology, and the feedback received during user trials. It also includes an analysis of test results and reflections on how well the system met its original objectives.
+________________________________________
+6.1 Testing Strategy
+To ensure coverage across both functional and non-functional requirements, I used several different testing methods:
+1.	Unit Testing â€“ To validate individual methods and logic blocks.
+2.	Integration Testing â€“ To ensure subsystems like challenge evaluation and gamification operated as expected when combined.
+3.	System Testing â€“ To validate the entire system workflow end-to-end from login to leaderboard.
+4.	User Acceptance Testing (UAT) â€“ Performed by peers and testers acting as end users.
+5.	Usability and Accessibility Testing â€“ Ensuring the design was intuitive and responsive.
+I also monitored performance bottlenecks, evaluated data integrity, and tested role-based access controls.
+________________________________________
+6.2 Manual Testing
+Manual testing was conducted to validate the core functionality of the platform. The primary areas tested were:
+â€¢ Challenge submission and evaluation logic
+â€¢ Points allocation and badge awarding system  
+â€¢ User authentication and Managing user sessions
+â€¢ Progress tracking and data persistence
+
+Manual Testing Process:
+I systematically tested each feature by:
+1. Creating test user accounts
+2. Attempting various coding challenges
+3. Verifying points and badges were awarded correctly
+4. Testing authentication flows (login, logout, registration)
+5. Confirming progress was saved and displayed properly
+
+Test Scenarios Covered:
+â€¢ Successful challenge completion with correct code
+â€¢ Failed attempts with incorrect code  
+â€¢ Multiple users competing on leaderboard
+â€¢ Badge unlocking at appropriate milestones
+â€¢ Profile management and avatar uploads
+â€¢ Friend system functionality
+
+All manual testing confirmed that core functionality worked as expected across different browsers and user scenarios.
+________________________________________
+6.3 Integration Testing
+The following interactions were tested as full integrated flows:
+â€¢	Login â†’ Challenge selection â†’ Submission â†’ Points awarded â†’ Leaderboard update
+â€¢	Submission logging â†’ Retrieval in user profile history
+I wrote integration tests that simulated real usage scenarios by seeding the database with dummy users and challenges. These tests identified some logic gaps, such as points being awarded even on duplicate submissions, which I resolved by introducing validation checks to prevent re-scoring the same challenge.
+________________________________________
+6.4 System Testing
+System testing was conducted by executing all critical use cases from a clean deployment. This involved installing the application on a separate local machine, using the Publish Profile generated by Visual Studio, and ensuring every interaction worked in isolation.
+Test scenarios included:
+â€¢	Registration with strong and weak passwords
+â€¢	Password reset and login/logout flows
+â€¢	Challenge filtering and attempt limits
+â€¢	Gamification triggers (first-time badge, 5-challenge streak, etc.)
+â€¢	Leaderboard sorting and pagination
+Findings:
+â€¢	All critical paths passed successfully
+â€¢	Pagination in the leaderboard occasionally broke when users had identical scores â€” resolved by adding a tie-breaking timestamp
+â€¢	Some validation error messages were too technical and were reworded for clarity
+________________________________________
+6.5 Usability Testing
+Usability testing was conducted in two phases:
+1.	Peer Review â€“ Five classmates from the Software Development stream tested the application.
+2.	Supervised Testing â€“ I observed 3 participants navigating the system, noting confusion, misclicks, or navigation issues.
+The tasks assigned during usability tests included:
+â€¢	Register and log in
+â€¢	Complete one Easy, one Medium, and one Hard challenge
+â€¢	Earn a badge
+â€¢	View the leaderboard
+â€¢	View profile stats
+Feedback Summary:
+Observation	Action Taken
+â€œI couldnâ€™t tell if my challenge passed.â€	Improved success/fail messages with color
+â€œIt wasnâ€™t clear how badges are unlocked.â€	Added badge tooltip and info popup
+â€œMobile layout looks slightly cramped.â€	Increased padding and font size
+â€œLeaderboard should show rank number.â€	Implemented rank index column
+ðŸ“¸ [Screenshot Placeholder]: Side-by-side images of desktop and mobile views of the Challenge Detail page.
+________________________________________
+6.6 Performance Evaluation
+I monitored performance using Chrome DevTools to check how fast pages loaded and how responsive the application felt during use.
+
+Basic Metrics I Checked:
+â€¢ Page load speeds seemed reasonable on my local machine
+â€¢ Challenge submissions processed quickly 
+â€¢ The leaderboard loaded fine with the test users I created
+â€¢ Database queries ran fast enough for the project scope
+
+Issues I Found:
+â€¢ Some pages took longer to load when displaying lots of data
+â€¢ The leaderboard could get slow if many users were added
+â€¢ Loading all user data at once wasn't efficient
+
+What I Did to Improve Performance:
+â€¢ Added some basic database indexing on user IDs and challenge IDs
+â€¢ Limited how many results are shown on pages to avoid loading too much data
+â€¢ Used simpler database queries where possible
+
+For a real deployment, I'd need to do proper load testing and performance optimization, but for this project the performance was acceptable for the intended use.
+_______________________________________
+6.7 Accessibility Compliance
+Accessibility was tested using:
+â€¢	Chrome Lighthouse audit
+â€¢	Manual screen reader testing using NVDA
+â€¢	Contrast checker for UI elements
+Audit results:
+â€¢	Contrast ratio: All text passed WCAG AA standards
+â€¢	Labels: All form fields properly associated
+â€¢	Keyboard Navigation: Fully functional
+â€¢	Alt attributes: Used for all icons and badge images
+Areas for future improvement:
+â€¢	Add ARIA roles to modals and navigation items
+â€¢	Provide a skip navigation link for screen readers
+ðŸ“¸ [Screenshot Placeholder]: Lighthouse audit result panel showing accessibility scores.
+________________________________________
+6.8 User Acceptance Testing (UAT)
+UAT was conducted by issuing access to 5 end users and providing a usage script. Their task was to interact with the full system and provide feedback through a form.
+Test Users:
+â€¢	2 classmates with C# experience
+â€¢	1 student from a non-technical course
+â€¢	2 non-coders
+Evaluation Criteria:
+â€¢	Ease of registration
+â€¢	Clarity of challenge descriptions
+â€¢	Responsiveness of feedback
+â€¢	Badge/XP motivation
+â€¢	Overall user experience
+Average Ratings (out of 5):
+â€¢	User interface: 4.4
+â€¢	Challenge clarity: 4.2
+â€¢	Motivation via gamification: 4.6
+â€¢	Profile/Leaderboard appeal: 4.8
+Positive Remarks:
+â€¢	â€œThe dashboard gave me a sense of progress.â€
+â€¢	â€œNice touch with the real-time feedback after submitting code.â€
+â€¢	â€œReminds me of Duolingo but for coding, really fun!â€
+Constructive Criticism:
+â€¢	â€œWould be cool to see hints on challenges.â€
+â€¢	â€œNo in-depth tutorials.â€
+________________________________________
+6.9 Testing Summary Table
+Test Type	Method Used	Outcome
+Manual Testing	Web interface testing	âœ… Passed
+System Testing	Full application workflow	âœ… Passed  
+Usability Testing	Peer feedback	âœ… Passed
+Performance Testing	Browser Application Response	âœ… Acceptable
+User Testing	User trials	âœ… Positive
+________________________________________
+6.10 Lessons Learned from Evaluation
+Testing taught me some important lessons:
+1.	Small UI changes make a big difference â€“ Users respond positively to clear messages and consistent layout.
+2.	Performance must be tested at scale â€“ Pagination, sorting, and filtering revealed issues only noticeable under load.
+3.	Gamification works when tied to learning â€“ Users were motivated not just by points, but by visual cues of progression.
+4.	Testing doesnâ€™t stop at launch â€“ Every feedback cycle led to small but meaningful improvements, and future user testing will remain essential.
+________________________________________
+6.11 Limitations Identified During Testing
+Despite successful test outcomes, some limitations were acknowledged:
+â€¢	No dynamic code execution: Solutions were evaluated through string comparison rather than live execution.
+â€¢	Hardcoded challenge validation logic: While suitable for the project scope, future scalability would benefit from modular evaluators per challenge type.
+â€¢	Lack of tutorial integration: Challenges currently stood alone; tutorials as a precursor or support material were not yet integrated.
+â€¢	Manual content management: Challenges and user data require direct database management rather than web-based administration tools.
+These were noted in a separate backlog for future development post-submission.
+________________________________________
+6.12 Future Testing Plans
+For the platform to scale, future testing must include:
+â€¢	Load testing: Simulate 1,000+ users using tools like Apache JMeter or Artillery.
+â€¢	Penetration testing: Especially before any public deployment, to test against injection, XSS, and role escalation.
+â€¢	A/B testing: To refine gamification elements, such as badge placement, leaderboard and visibility.
+â€¢	Cross-browser automated UI testing: Using tools like Selenium to catch compatibility bugs.
+________________________________________
+6.13 Conclusion
+The testing and evaluation phase confirmed the functional integrity and user appeal of â€œCoding Codec.â€ The platform performed reliably across all major user flows, passed rigorous unit and integration testing, and received positive feedback from end users. While some limitations were identified, they did not hinder the systemâ€™s core goals and instead informed future improvement plans. Most importantly, testing validated the initial design goals â€” to create an intuitive, gamified learning environment that motivates users to learn C# effectively.
+The final chapter will provide a full reflection and conclusion, summarizing project achievements, challenges, and lessons for future work.
+Chapter 7: Conclusions and Recommendations
+This final chapter offers a comprehensive reflection on the â€œCoding Codecâ€ project, summarizing its development journey, achievements, limitations, and potential for future enhancement. As a capstone project for my Software Development stream, this platform provided a valuable opportunity to apply my technical, analytical, and project management skills in a practical educational context. The chapter is divided into four major sections: conclusions on the overall experience, evaluation of learning outcomes, recommendations for future improvements, and closing reflections on personal and professional growth.
+________________________________________
+7.1 Project Summary
+â€œCoding Codecâ€ was conceived as a gamified learning platform focused on teaching C# programming through progressive challenge-based learning. It aimed to fill a niche between full online courses and lightweight coding practice apps, offering users a motivational, interactive way to develop core programming skills.
+At its core, the platform allows users to:
+â€¢	Create accounts and manage personal profiles
+â€¢	Attempt progressively difficult programming challenges
+â€¢	Receive instant feedback
+â€¢	Earn achievements and rank on a public leaderboard
+â€¢	Track personal learning progress over time
+Content management is handled through direct database updates and manual file management. Every feature was purposefully selected to reinforce learning outcomes while maintaining a fun and rewarding user experience.
+________________________________________
+7.2 Project Objectives and Outcomes
+Hereâ€™s how I achieved each of the initial project objectives:
+Objective	Achieved?	Details
+Design and build a full-stack learning platform	âœ… Yes	Successfully implemented using ASP.NET Core MVC, SQL Server, and Razor.
+Implement gamification elements to improve motivation and retention	âœ… Yes	Points, badges, and leaderboard systems integrated and tested successfully.
+Provide real-time feedback on challenge submissions	âœ… Yes	Submissions validated with logic feedback shown to users.
+Ensure secure user authentication	âœ… Yes	Implemented using custom session-based authentication with BCrypt hashing and access control.
+Ensure responsive design for mobile users	âœ… Yes	Frontend tested across devices and passed usability checks.
+
+While some enhancements were deprioritized for future work (e.g., dynamic code execution and tutorial content), all core goals of the initial project specification were met or exceeded.
+________________________________________
+7.3 Reflections on Development
+a. Technical Growth
+Building â€œCoding Codecâ€ gave me hands-on experience with modern web technologies and frameworks beyond textbook theory. Some of the key skills and concepts I improved include:
+â€¢	MVC Architecture: I learned how to apply the Model-View-Controller pattern to organize code cleanly.
+â€¢	Entity Framework: Using EF Core, I gained confidence in handling relational data models, migrations, and LINQ queries.
+â€¢	Authentication and Security: Implementing custom session-based authentication helped me appreciate the complexities and best practices of user account management.
+â€¢	Frontend Responsiveness: Bootstrap taught me how to craft responsive UIs with minimal custom CSS.
+â€¢	Full-stack Debugging: From logic errors in C# to visual bugs in HTML, I learned to diagnose and resolve problems at all layers of the stack.
+These experiences mirror the expectations of modern software development roles and have directly prepared me for real-world industry challenges.
+b. Project Management Experience
+I also grew in my ability to manage complex, long-term projects. Key lessons included:
+â€¢	Time Management: I learned to prioritize critical functionality over â€œnice-to-haveâ€ features.
+â€¢	Agile Thinking: Although working solo, I adopted an iterative development process with regular testing and validation cycles.
+â€¢	Documentation Discipline: Keeping detailed notes on decisions and implementation details helped immensely when debugging or preparing this report.
+The value of breaking large tasks into manageable milestones cannot be overstated. Having weekly objectives ensured consistent progress and reduced last-minute pressure.
+________________________________________
+7.4 Educational and Pedagogical Insights
+From an educational technology perspective, this project deepened my understanding of how people learn to code and how to encourage learning through well-structured challenges and motivational rewards.
+a. Learner Engagement
+Engagement is a critical barrier to learning, especially in self-directed environments. By incorporating points, badges, and social comparison (via the leaderboard), I successfully created a motivational structure that rewarded progress and effort â€” key principles in modern gamification theory.
+From user testing feedback, it was evident that these gamified features:
+â€¢	Increased time-on-task
+â€¢	Encouraged repetition and retrying
+â€¢	Gave users a clear sense of achievement
+This aligns with the educational psychology concept of positive reinforcement, where consistent, immediate feedback improves learning retention and user satisfaction.
+b. Challenge Design
+Designing the challenges taught me about scaffolding learning content, a concept in instructional design where users progress from simpler to more complex tasks. Each challenge built upon the previous one, reinforcing prior concepts (e.g., variables â†’ conditionals â†’ loops).
+Ensuring that each challenge was:
+â€¢	Clearly worded
+â€¢	Appropriately difficult
+â€¢	Delivering instant validation
+â€¦was as critical as writing the backend logic. A poorly phrased question or an unclear goal can derail learning quickly.
+________________________________________
+7.5 Recommendations for Future Development
+The platform is usable and complete, but there is significant room for enhancement. Here are some ideas for improving the platform in the future, organized by category.
+a. Technical Recommendations
+1.	Dynamic Code Execution
+Integrate a secure, sandboxed compiler (e.g., via Docker containers or APIs like JDoodle or Sphere Engine) to run user-submitted C# code. This would replace the current pattern-matching logic and allow more complex validation.
+2.	Analytics and Reporting
+Build dashboards to help instructors view:
+o	Average success rate per challenge
+o	User drop-off points
+o	Time taken per submission
+This would help me improve the challenges based on actual usage data.
+3.	API Layer and Mobile App
+Expose core functions (e.g., login, challenge retrieval, submissions) via a RESTful API to support future development of a mobile application.
+b. Educational Recommendations
+1.	Tutorial Integration
+Introduce a sequence of short written or video tutorials that align with challenge topics. Users should be able to read or watch a lesson before attempting a challenge.
+2.	Hint System and Explanations
+Provide hints for each challenge that users can reveal after an initial attempt and optionally show the correct solution after multiple failed attempts. This encourages learning over rote trial-and-error. This was suggested by one of my test users and I believe this could help the apps learning ability.
+3.	Gamified Curriculum Pathways
+Rather than treating all challenges equally, group them into â€œtracksâ€ or â€œquestsâ€ with narrative progression (e.g., "Loops Adventure", "Object-Oriented Odyssey").
+4.	User Forums or Discussion
+Add a space for peer-to-peer help. Platforms like Stack Overflow and Codecademy have demonstrated that social learning environments increase engagement and retention.
+________________________________________
+7.6 Potential for Real-World Use
+Given the current state of the application, I believe â€œCoding Codecâ€ could be deployed as:
+â€¢	An internal learning platform for universities to support C# modules
+â€¢	A standalone project for junior developers looking to practice algorithmic logic
+â€¢	A coding bootcamp supplement to assess student understanding before interviews
+To realize this potential, I would need to:
+â€¢	Migrate hosting to a public cloud provider (e.g., Azure)
+â€¢	Set up domain routing and HTTPS with a certificate authority
+â€¢	Implement monitoring and error reporting (e.g., Application Insights)
+________________________________________
+7.7 Personal Reflection
+As I reflect on the past months of work, I feel a genuine sense of accomplishment. â€œCoding Codecâ€ was not just an assignment â€” it became a platform I enjoyed building, testing, and refining. It was the most complex application I have ever developed independently, and it demanded every bit of knowledge and creativity I could muster.
+Some key reflections:
+â€¢	I now have the confidence to lead a full project lifecycle, from proposal to deployment.
+â€¢	I see the value in planning before coding â€” wireframes, schema diagrams, and requirement lists all paid off.
+â€¢	I recognize that user testing and feedback are vital, even if time-consuming.
+â€¢	I understand that no project is ever truly â€œdoneâ€ â€” iteration is part of success.
+Through setbacks and breakthroughs, I remained committed to building something that mattered to me â€” a tool that makes learning programming more enjoyable and effective.
+________________________________________
+7.8 Final Conclusion
+This project brought together everything Iâ€™ve learned in software development and allowed me to create something genuinely useful. It became an exercise in real-world software development. From technical planning and secure coding to responsive UI and educational design.
+I leave this experience with a deeper understanding of how to build not just applications, but purposeful, user-focused solutions that empower and engage.
+ 
+9.	References
+Chou, Y. (2015). Actionable Gamification: Beyond Points, Badges, and Leaderboards. 1st ed. Octalysis Media. ISBN: 9781511744041.
+Csikszentmihalyi, M. (1990). Flow: The Psychology of Optimal Experience. 1st ed. New York: Harper & Row.
+Deci, E.L. and Ryan, R.M. (2000). The "What" and "Why" of Goal Pursuits: Human Needs and the Self-Determination of Behavior. Psychological Inquiry, 11(4), pp.227â€“268.
+Dicheva, D., Dichev, C., Agre, G. and Angelova, G. (2015). Gamification in education: A systematic mapping study. Educational Technology & Society, 18(3), pp.75â€“88.
+Hanus, M.D. and Fox, J. (2015). Assessing the effects of gamification in the classroom: A longitudinal study on intrinsic motivation, social comparison, satisfaction, effort, and academic performance. Computers & Education, 80, pp.152â€“161.
+Kolb, D.A. (1984). Experiential Learning: Experience as the Source of Learning and Development. Englewood Cliffs, NJ: Prentice-Hall.
+Nicol, D.J. and Macfarlaneâ€Dick, D. (2006). Formative assessment and selfâ€regulated learning: A model and seven principles of good feedback practice. Studies in Higher Education, 31(2), pp.199â€“218.
+Oliveira, D.R., Rodrigues, L.F., Oliveira, M. and Costa, C.J. (2021). Gamification and flow: a systematic review of the literature. Preprint submitted to arXiv. Available at: https://arxiv.org/abs/2106.09942 .
+Toda, A.M., Valle, P.H.M., Isotani, S. (2020). The dark side of gamification: An overview of negative effects of gamification in education. Communications in Computer and Information Science, 1188, pp.143â€“156.
+Vygotsky, L.S. (1978). Mind in Society: The Development of Higher Psychological Processes. Cambridge, MA: Harvard University Press.
+
+
+

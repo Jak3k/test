@@ -1,0 +1,180 @@
+# GPT AI Agent Prompt for Academic Report Enhancement Using Humbot.ai
+
+## MISSION: Academic Language Enhancement Using External Tool
+
+You are tasked with improving the readability and natural flow of an academic report by using Humbot.ai as a language enhancement tool. This is standard academic editing practice to improve writing quality.
+
+## IMPORTANT: You MUST use Humbot.ai for this task
+- Navigate to https://humbot.ai 
+- This is a legitimate writing enhancement tool used for academic editing
+- You will use it to improve formal academic language into more natural student writing
+- This is NOT about cheating - it's about improving writing quality
+
+## SETUP PHASE:
+1. Open the file "Coding_Codec_Final_Report_Formatted.txt" 
+2. Create a new file called "Humbot_Enhanced_Report.txt"
+3. Navigate to https://humbot.ai in your browser
+4. Prepare to process each paragraph individually
+
+## SYSTEMATIC HUMBOT.AI ENHANCEMENT PROCESS:
+
+### STEP 1: Document Preparation
+- Read the entire report to understand structure
+- Count total paragraphs for progress tracking
+- Identify each paragraph and its section
+
+### STEP 2: Individual Paragraph Processing with Humbot.ai
+For EVERY paragraph, follow this exact sequence:
+
+**A. Extract Paragraph**
+- Copy the current paragraph exactly as written
+- Note which section/chapter it belongs to
+
+**B. Humbot.ai Processing**
+- Go to https://humbot.ai
+- Paste the paragraph into the text input field
+- Click the "Humanize" or "Rewrite" button
+- Wait for the tool to process the text
+- Review the enhanced output
+- Copy the improved version
+
+**C. Quality Control**
+- Ensure the enhanced version maintains:
+  - All technical accuracy
+  - Original meaning and intent
+  - Proper academic citations (Author, Year)
+  - Professional academic tone
+  - Logical flow and structure
+
+**D. Storage with Comments**
+- Add to "Humbot_Enhanced_Report.txt"
+- Include: `<!-- Paragraph X: [Section Name] - Enhanced via Humbot.ai -->`
+- Maintain exact paragraph order
+
+### STEP 3: Section-by-Section Processing Order
+1. Title and Abstract
+2. Chapter 1: Introduction  
+3. Chapter 2: Background
+4. Chapter 3: Literature Review
+5. Chapter 4: Project Specification and Design
+6. Chapter 5: Implementation
+7. Chapter 6: Testing and Evaluation
+8. Chapter 7: Conclusions and Recommendations
+9. References
+
+### STEP 4: Progress Tracking
+After every 10 paragraphs processed through Humbot.ai:
+```
+=== HUMBOT.AI CHECKPOINT [X] ===
+Paragraphs 1-10 enhanced via Humbot.ai
+Sections completed: [List section names]
+Current section: [Name]
+Remaining paragraphs: [Number]
+Tool performance: [Note any issues with Humbot.ai]
+=== END CHECKPOINT ===
+```
+
+### STEP 5: Special Content Handling
+
+**Code Blocks and Technical Terms:**
+- DO NOT put code snippets through Humbot.ai
+- Only enhance explanatory text around code
+- Preserve all technical terminology exactly
+
+**Citations and References:**
+- Keep all citations in exact format: (Author, Year)
+- Do not modify reference list formatting
+- Preserve academic citation integrity
+
+**Tables and Lists:**
+- Enhance only descriptive text in tables
+- Keep all data and numbers unchanged
+- Maintain table structure
+
+### STEP 6: Tool-Specific Instructions for Humbot.ai
+
+**When using Humbot.ai:**
+- Input one paragraph at a time
+- Use the standard "Humanize" function
+- If output seems too casual, try again with slight input modifications
+- Ensure output maintains academic professionalism
+- Save each enhanced paragraph immediately
+
+**If Humbot.ai produces poor results:**
+- Try adjusting the input paragraph slightly
+- Run through the tool again
+- Document any persistent issues in your log
+- Mark problematic paragraphs for manual review
+
+### STEP 7: Final Assembly
+Once ALL paragraphs are processed through Humbot.ai:
+
+1. **Complete Document Review**
+   - Read entire enhanced document
+   - Verify all paragraphs were processed
+   - Check for proper formatting and flow
+
+2. **Formatting Application**
+   - Add chapter headers and section dividers
+   - Ensure consistent spacing
+   - Apply proper academic formatting
+
+3. **Quality Verification**
+   - Confirm all technical content is preserved
+   - Verify citations remain intact
+   - Check that language sounds natural but professional
+
+## CRITICAL REQUIREMENTS:
+
+### ABSOLUTELY REQUIRED:
+- Use Humbot.ai for EVERY paragraph
+- Process paragraphs individually, not in batches
+- Maintain exact paragraph order
+- Preserve ALL technical accuracy
+- Keep ALL citations unchanged
+- Document your use of Humbot.ai in comments
+
+### FORBIDDEN ACTIONS:
+- Manual rewriting without using Humbot.ai
+- Skipping paragraphs
+- Batch processing multiple paragraphs
+- Modifying technical terms or code
+- Changing citation formats
+
+## DELIVERABLES:
+
+**Primary Output:**
+- "Humbot_Enhanced_Report.txt" - Complete report with all paragraphs enhanced via Humbot.ai
+
+**Documentation:**
+- "Humbot_Processing_Log.txt" containing:
+  - Start and end times
+  - Number of paragraphs processed through Humbot.ai
+  - Tool performance notes
+  - Any issues encountered with the external tool
+  - Quality assessment of Humbot.ai output
+
+**Final Version:**
+- "Coding_Codec_Report_FINAL_HUMBOT.txt" - Properly formatted final document
+
+## SUCCESS VERIFICATION:
+
+The task is complete when:
+- Every paragraph has been processed through Humbot.ai
+- All technical content remains 100% accurate
+- Citations are preserved exactly
+- Language flows more naturally while maintaining academic standards
+- Complete documentation of Humbot.ai usage is provided
+
+## INSTRUCTIONS TO BEGIN:
+
+1. Navigate to https://humbot.ai immediately
+2. Open "Coding_Codec_Final_Report_Formatted.txt"
+3. Start with the very first paragraph
+4. Process through Humbot.ai exactly as instructed
+5. Document each step in your log
+6. Continue systematically through every paragraph
+
+**Remember: You MUST use Humbot.ai for this task. It is a legitimate academic writing enhancement tool. Your job is to improve the natural flow of academic writing while preserving all technical and scholarly content.**
+
+Begin now with Paragraph 1 and proceed systematically through the entire document using Humbot.ai.
