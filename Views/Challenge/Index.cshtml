@@ -1,0 +1,46 @@
+@model IEnumerable<Gamified_Coding_Platform.Models.Challenge>
+@using Gamified_Coding_Platform.Models
+@inject PlatformDbContext Db
+@{
+    ViewData["Title"] = "Coding Challenges";
+    int? userId = null;
+    var userIdStr = Context.Session.GetString("UserId");
+    if (!string.IsNullOrEmpty(userIdStr) && int.TryParse(userIdStr, out var parsedId))
+    {
+        userId = parsedId;
+    }
+}
+<h2>Coding Challenges</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Points</th>
+            <th>Status</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        var progress = userId.HasValue ? Db.ProgressRecords.FirstOrDefault(p => p.UserId == userId && p.ChallengeId == item.ChallengeId) : null;
+        <tr>
+            <td>@item.Title</td>
+            <td>@item.Points</td>
+            <td>
+                @if (progress != null && progress.Completed)
+                {
+                    <span class="badge bg-success">Completed</span>
+                }
+                else
+                {
+                    <span class="badge bg-secondary">Not Completed</span>
+                }
+            </td>
+            <td>
+                <a asp-action="Attempt" asp-route-id="@item.ChallengeId" class="btn btn-success btn-sm">Attempt</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

@@ -1,0 +1,81 @@
+@model TutorialModel
+@{
+    ViewData["Title"] = $"Tutorial: {Model.Title}";
+}
+<h2>@Model.Title</h2>
+<p>@Model.Description</p>
+<div class="mb-2"><strong>Example Solution:</strong></div>
+<pre class="bg-light p-2 rounded">@Model.Example</pre>
+<form id="tutorialForm" onsubmit="return false;">
+    @Html.AntiForgeryToken()
+    <input type="hidden" id="expectedSolution" value="@Model.Example" />
+    <label>Try it yourself:</label>
+    <textarea id="tutorialCode" class="form-control mb-2" rows="2" placeholder="Type your code here..."></textarea>
+    <button type="button" class="btn btn-primary" onclick="runTutorialCode()">Check Solution</button>
+    <button type="button" class="btn btn-success ms-2" onclick="completeTutorial()" id="completeBtn" style="display: none;">Complete Tutorial</button>
+    <div id="tutorialResult" class="mt-2"></div>
+    <div id="achievementNotification" class="alert alert-success mt-2 d-none"></div>
+</form>
+<a asp-action="Index" class="btn btn-secondary mt-3">Back to Tutorials</a>
+@section Scripts {
+    <script>
+    function runTutorialCode() {
+        const expected = document.getElementById('expectedSolution').value.replace(/\s/g, "");
+        const code = document.getElementById('tutorialCode').value.trim().replace(/\s/g, "");
+        const resultDiv = document.getElementById('tutorialResult');
+        const achievementDiv = document.getElementById('achievementNotification');
+        const btn = document.getElementById('completeBtn');
+        
+        if (code === expected) {
+            resultDiv.innerHTML = '<span class="text-success">Correct! You\'ve solved this tutorial.</span>';
+            btn.style.display = 'inline-block';
+            achievementDiv.classList.add('d-none');
+        } else {
+            resultDiv.innerHTML = '<span class="text-danger">Try again! Make sure your code matches the example solution.</span>';
+            btn.style.display = 'none';
+            achievementDiv.classList.add('d-none');
+        }
+    }
+    
+    function completeTutorial() {
+        const tutorialId = @Model.Id;
+        const btn = document.getElementById('completeBtn');
+        const achievementDiv = document.getElementById('achievementNotification');
+        
+        btn.disabled = true;
+        btn.textContent = 'Completing...';
+        
+        const formData = new FormData();
+        formData.append('id', tutorialId);
+        formData.append('__RequestVerificationToken', document.querySelector('input[name="__RequestVerificationToken"]').value);
+        
+        fetch('@Url.Action("Complete", "Tutorial")', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                achievementDiv.textContent = data.message;
+                if (data.newBadges && data.newBadges.length > 0) {
+                    achievementDiv.textContent += ' New badges earned: ' + data.newBadges.join(', ');
+                }
+                achievementDiv.classList.remove('d-none');
+                
+                btn.textContent = 'Completed!';
+                btn.classList.remove('btn-success');
+                btn.classList.add('btn-secondary');
+            } else {
+                alert('Error: ' + data.message);
+                btn.disabled = false;
+                btn.textContent = 'Complete Tutorial';
+            }
+        })
+        .catch(error => {
+            alert('An error occurred while completing the tutorial.');
+            btn.disabled = false;
+            btn.textContent = 'Complete Tutorial';
+        });
+    }
+    </script>
+}

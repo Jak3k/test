@@ -1,0 +1,44 @@
+@model Gamified_Coding_Platform.Models.User
+@{
+    ViewData["Title"] = "Achievements & Badges";
+    var allBadges = ViewBag.AllBadges as List<Gamified_Coding_Platform.Models.Badge> ?? new List<Gamified_Coding_Platform.Models.Badge>();
+    var unlockedBadges = ViewBag.UnlockedBadges as List<Gamified_Coding_Platform.Models.UserBadge> ?? new List<Gamified_Coding_Platform.Models.UserBadge>();
+}
+<h2>Achievements & Badges</h2>
+@if (Model != null)
+{
+    <div class="mb-3">
+        <strong>Points:</strong> @(Model.Points)
+    </div>
+    <div>
+        <strong>Badges:</strong>
+        <div class="row">
+            @foreach (var badge in allBadges)
+            {
+                var unlocked = unlockedBadges?.FirstOrDefault(ub => ub.BadgeKey == badge.Key);
+                <div class="col-md-6 mb-3">
+                    <div class="card @(unlocked != null ? "border-success" : "border-secondary")">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <span class="badge @(unlocked != null ? "bg-success" : "bg-secondary")">@badge.Name</span>
+                            </h5>
+                            <p class="card-text">@badge.Description</p>
+                            @if (unlocked != null)
+                            {
+                                <span class="text-success">Unlocked: @unlocked.UnlockedAt.ToString("g")</span>
+                            }
+                            else
+                            {
+                                <span class="text-muted">Not unlocked yet</span>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}
+else
+{
+    <div>Please log in to view your achievements.</div>
+}

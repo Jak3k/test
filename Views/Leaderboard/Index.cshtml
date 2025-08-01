@@ -1,0 +1,47 @@
+@model IEnumerable<Gamified_Coding_Platform.Models.User>
+@{
+    ViewData["Title"] = "Leaderboard";
+    int rank = 1;
+    string? currentUserIdStr = Context.Session.GetString("UserId");
+    int? currentUserId = null;
+    if (!string.IsNullOrEmpty(currentUserIdStr) && int.TryParse(currentUserIdStr, out var parsedId))
+    {
+        currentUserId = parsedId;
+    }
+}
+<h2>Leaderboard</h2>
+<p>This page will display the top users by points and achievements.</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Rank</th>
+            <th>Username</th>
+            <th>Points</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var user in Model)
+    {
+        var isCurrent = (currentUserId.HasValue && user.UserId == currentUserId);
+        <tr style="@(isCurrent ? "background: var(--primary); color: #222; font-weight: bold;" : "")">
+            <td>@rank</td>
+            <td>@user.Username</td>
+            <td>@user.Points</td>
+        </tr>
+        rank++;
+    }
+    </tbody>
+</table>
+@if (currentUserId.HasValue && !Model.Any(u => u.UserId == currentUserId))
+{
+    var dbObj = Context.RequestServices.GetService(typeof(Gamified_Coding_Platform.Models.PlatformDbContext));
+    var db = dbObj as Gamified_Coding_Platform.Models.PlatformDbContext;
+    var currentUser = db != null ? db.Users.FirstOrDefault(u => u.UserId == currentUserId) : null;
+    if (db != null && currentUser != null)
+    {
+        var userRank = db.Users.Count(u => u.Points > currentUser.Points) + 1;
+        <div class="alert alert-info mt-3">
+            Your Rank: <strong>@userRank</strong> | Points: <strong>@currentUser.Points</strong>
+        </div>
+    }
+}

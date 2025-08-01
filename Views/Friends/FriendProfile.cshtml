@@ -1,0 +1,46 @@
+@model Gamified_Coding_Platform.Models.User
+@{
+    ViewData["Title"] = "Friend Profile";
+    var allBadges = ViewBag.AllBadges as List<Gamified_Coding_Platform.Models.Badge> ?? new List<Gamified_Coding_Platform.Models.Badge>();
+    var unlockedBadges = ViewBag.UnlockedBadges as List<Gamified_Coding_Platform.Models.UserBadge> ?? new List<Gamified_Coding_Platform.Models.UserBadge>();
+}
+<h2>@Model.Username's Profile</h2>
+<div class="card" style="max-width:400px;">
+    <div class="card-body">
+        @if (!string.IsNullOrEmpty(Model.AvatarUrl))
+        {
+            <img src="@Model.AvatarUrl" alt="Avatar" class="img-thumbnail mb-3" style="max-width:120px;" />
+        }
+        <h4>@Model.Username</h4>
+        <p><strong>Points:</strong> @Model.Points</p>
+        <p><strong>Challenges Completed:</strong> @Model.ChallengesCompleted</p>
+    </div>
+</div>
+<h3 class="mt-4">Achievements & Badges</h3>
+<div>
+    <div class="row">
+        @foreach (var badge in allBadges)
+        {
+            var unlocked = unlockedBadges?.FirstOrDefault(ub => ub.BadgeKey == badge.Key);
+            <div class="col-md-6 mb-3">
+                <div class="card @(unlocked != null ? "border-success" : "border-secondary")">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <span class="badge @(unlocked != null ? "bg-success" : "bg-secondary")">@badge.Name</span>
+                        </h5>
+                        <p class="card-text">@badge.Description</p>
+                        @if (unlocked != null)
+                        {
+                            <span class="text-success">Unlocked: @unlocked.UnlockedAt.ToString("g")</span>
+                        }
+                        else
+                        {
+                            <span class="text-muted">Not unlocked yet</span>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<a asp-action="Index" class="btn btn-secondary mt-3">Back to Friends</a>

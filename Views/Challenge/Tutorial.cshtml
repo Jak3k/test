@@ -1,0 +1,69 @@
+@{
+    ViewData["Title"] = "Interactive Coding Tutorial";
+    var tutorials = new[]
+    {
+        new {
+            Title = "Hello World",
+            Description = "Learn how to print 'Hello, World!' to the console.",
+            Example = "Console.WriteLine(\"Hello, World!\");"
+        },
+        new {
+            Title = "Sum of Two Numbers",
+            Description = "Learn how to return the sum of two numbers.",
+            Example = "return a + b;"
+        },
+        new {
+            Title = "Reverse a String",
+            Description = "Learn how to reverse a string.",
+            Example = "return new string(input.Reverse().ToArray());"
+        }
+    };
+}
+<h2>Interactive Coding Tutorial</h2>
+<p>Work through each tutorial below to learn how to solve the platform's challenges. After completing all tutorials, you can attempt the real challenges!</p>
+
+<div class="accordion" id="tutorialAccordion">
+    @for (int i = 0; i < tutorials.Length; i++)
+    {
+        var t = tutorials[i];
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="heading@i">
+                <button class="accordion-button @(i != 0 ? "collapsed" : "")" type="button" data-bs-toggle="collapse" data-bs-target="#collapse@i" aria-expanded="@(i == 0 ? "true" : "false")" aria-controls="collapse@i">
+                    @($"{i + 1}. {t.Title}")
+                </button>
+            </h2>
+            <div id="collapse@i" class="accordion-collapse collapse @(i == 0 ? "show" : "")" aria-labelledby="heading@i" data-bs-parent="#tutorialAccordion">
+                <div class="accordion-body">
+                    <p>@t.Description</p>
+                    <div class="mb-2"><strong>Example Solution:</strong></div>
+                    <pre class="bg-light p-2 rounded" id="expectedCode@i">@t.Example</pre>
+                    <form onsubmit="return false;">
+                        <label>Try it yourself:</label>
+                        <textarea id="tutorialCode@i" class="form-control mb-2" rows="2" placeholder="Type your code here..."></textarea>
+                        <button type="button" class="btn btn-primary" onclick="runTutorialCode(@i)">Check Solution</button>
+                        <div id="tutorialResult@i" class="mt-2"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<div class="alert alert-success mt-4">
+    <strong>Ready?</strong> Now that you've learned how to solve each challenge, head over to the <a asp-controller="Challenge" asp-action="Index">Challenges</a> tab and try them for real!
+</div>
+
+@section Scripts {
+    <script>
+    function runTutorialCode(idx) {
+        var code = document.getElementById('tutorialCode' + idx).value;
+        var expected = document.getElementById('expectedCode' + idx).innerText;
+        var resultDiv = document.getElementById('tutorialResult' + idx);
+        if (code === expected) {
+            resultDiv.innerHTML = '<span class="text-success">Correct! You\'ve learned this challenge.</span>';
+        } else {
+            resultDiv.innerHTML = '<span class="text-danger">Try again! Make sure your code matches the example solution.</span>';
+        }
+    }
+    </script>
+}

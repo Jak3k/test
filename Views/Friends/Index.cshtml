@@ -1,0 +1,86 @@
+@using Gamified_Coding_Platform.Models
+@inject PlatformDbContext Db
+@{
+    ViewData["Title"] = "My Friends";
+    var friends = ViewBag.Friends as List<Friendship> ?? new List<Friendship>();
+    var pending = ViewBag.Pending as List<Friendship> ?? new List<Friendship>();
+    int? currentUserId = null;
+    var userIdStr = Context.Session.GetString("UserId");
+    if (!string.IsNullOrEmpty(userIdStr) && int.TryParse(userIdStr, out var parsedId))
+    {
+        currentUserId = parsedId;
+    }
+}
+<h2>My Friends</h2>
+@if (friends.Any())
+{
+    <ul class="list-group mb-3">
+        @foreach (var f in friends)
+        {
+            var friendUserId = (f.UserId == currentUserId) ? f.FriendId : f.UserId;
+            var friendUser = Db.Users.FirstOrDefault(u => u.UserId == friendUserId);
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                @if (friendUser != null)
+                {
+                    <span>@friendUser.Username</span>
+                }
+                else
+                {
+                    <span>User #@friendUserId</span>
+                }
+                <div>
+                    <a asp-action="FriendProfile" asp-route-id="@friendUserId" class="btn btn-info btn-sm me-2">View Profile</a>
+                    <form asp-action="Remove" method="post" class="d-inline">
+                        <input type="hidden" name="friendshipId" value="@f.Id" />
+                        <button type="submit" class="btn btn-danger btn-sm">Remove</button>
+                    </form>
+                </div>
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <div>No friends yet.</div>
+}
+
+<h3>Pending Friend Requests</h3>
+@if (pending.Any())
+{
+    <ul class="list-group mb-3">
+        @foreach (var p in pending)
+        {
+            var requester = Db.Users.FirstOrDefault(u => u.UserId == p.UserId);
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                @if (requester != null)
+                {
+                    <span>Request from @requester.Username</span>
+                }
+                else
+                {
+                    <span>Request from User #@p.UserId</span>
+                }
+                <form asp-action="Accept" method="post" class="ms-2">
+                    <input type="hidden" name="friendshipId" value="@p.Id" />
+                    <button type="submit" class="btn btn-success btn-sm">Accept</button>
+                </form>
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <div>No pending requests.</div>
+}
+
+<h3>Add a Friend</h3>
+@if (TempData["FriendError"] != null)
+{
+    <div class="alert alert-danger">@TempData["FriendError"]</div>
+}
+<form asp-action="SendRequest" method="post" class="mb-3">
+    <div class="input-group">
+        <input type="text" name="friendUsername" class="form-control" placeholder="Enter Username" required />
+        <button type="submit" class="btn btn-primary">Send Request</button>
+    </div>
+</form>

@@ -1,0 +1,18 @@
+@model Gamified_Coding_Platform.Models.Challenge
+@{
+    ViewData["Title"] = "Attempt Challenge";
+}
+<h2>@Model.Title</h2>
+<p>@Model.Description</p>
+<form asp-action="Attempt" method="post">
+    <input type="hidden" name="id" value="@Model.ChallengeId" />
+    <div class="form-group">
+        <label>Write your code:</label>
+        <textarea name="userCode" class="form-control" rows="10"></textarea>
+    </div>
+    <button type="submit" class="btn btn-success">Submit</button>
+</form>
+@if (ViewBag.Result != null)
+{
+    <div class="alert alert-info mt-2">@ViewBag.Result</div>
+}

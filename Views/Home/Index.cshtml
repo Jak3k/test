@@ -1,0 +1,180 @@
+﻿@{
+    ViewData["Title"] = "Coding Codec";
+}
+
+<!-- Hero Section -->
+<div class="hero-section bg-primary text-white text-center py-5 mb-5">
+    <div class="container">
+        <h1 class="display-3 fw-bold mb-3">🚀 Master C# Programming</h1>
+        <p class="lead mb-4">Learn C# through interactive challenges, earn achievements, and become a proficient developer!</p>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <p class="fs-5">Transform your C# learning journey into an exciting adventure. Complete hands-on coding challenges, unlock badges, and climb the leaderboard while mastering Microsoft's powerful programming language.</p>
+                <div class="mt-4">
+                    <span class="badge bg-light text-white fs-6 me-2">🎯 Beginner Friendly</span>
+                    <span class="badge bg-light text-white fs-6 me-2">🏆 Gamified Learning</span>
+                    <span class="badge bg-light text-white fs-6">💼 Industry Ready</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Features Grid -->
+<div class="container mb-5">
+    <div class="row text-center mb-5">
+        <div class="col">
+            <h2 class="display-5 fw-bold text-primary">🎯 C# Learning Features</h2>
+            <p class="lead text-muted">Everything you need to master C# programming</p>
+        </div>
+    </div>
+    
+    <div class="row g-4">
+        <!-- Interactive C# Challenges -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body text-center p-4">
+                    <div class="display-6 text-primary mb-3">💻</div>
+                    <h5 class="card-title fw-bold">Interactive C# Challenges</h5>
+                    <p class="card-text">Solve real-world C# problems from basic syntax to advanced LINQ, with instant feedback and detailed explanations.</p>
+                    <a href="/Challenge" class="btn btn-outline-primary">Start Learning C#</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Structured Learning Path -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body text-center p-4">
+                    <div class="display-6 text-primary mb-3">📚</div>
+                    <h5 class="card-title fw-bold">Structured Learning Path</h5>
+                    <p class="card-text">Progress from C# basics to advanced topics: Variables → Methods → OOP → LINQ → Advanced Concepts.</p>
+                    <a href="/Tutorial" class="btn btn-outline-primary">View Tutorials</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Achievement System -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body text-center p-4">
+                    <div class="display-6 text-warning mb-3">🏆</div>
+                    <h5 class="card-title fw-bold">Achievement System</h5>
+                    <p class="card-text">Earn badges and unlock achievements as you progress through different skill levels.</p>
+                    <a href="/Gamification" class="btn btn-outline-warning">View Badges</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Social Learning -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body text-center p-4">
+                    <div class="display-6 text-success mb-3">👥</div>
+                    <h5 class="card-title fw-bold">Social Learning</h5>
+                    <p class="card-text">Connect with friends, share progress, and compete on the global leaderboard.</p>
+                    <a href="/Friends" class="btn btn-outline-success">Find Friends</a>
+                </div>
+            </div>
+        </div>
+        <!-- C# Progress Tracking -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body text-center p-4">
+                    <div class="display-6 text-info mb-3">📊</div>
+                    <h5 class="card-title fw-bold">C# Skills Tracking</h5>
+                    <p class="card-text">Monitor your C# learning progress with detailed analytics across different language concepts and skill levels.</p>
+                    <a href="/Profile" class="btn btn-outline-info">View Progress</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- C# Interactive Tutorials -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body text-center p-4">
+                    <div class="display-6 text-purple mb-3">🎓</div>
+                    <h5 class="card-title fw-bold">C# Tutorials</h5>
+                    <p class="card-text">Master C# fundamentals through step-by-step tutorials covering syntax, OOP, LINQ, and advanced concepts.</p>
+                    <a href="/Tutorial" class="btn btn-outline-dark">Learn C# Basics</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Stats Section -->
+<div class="bg-light py-5 mb-5">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-3 mb-4">
+                <div class="display-6 fw-bold text-primary">@ViewBag.ChallengeCount</div>
+                <p class="text-muted">C# Challenges</p>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="display-6 fw-bold text-success">@ViewBag.BadgeCount</div>
+                <p class="text-muted">Achievement Badges</p>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="display-6 fw-bold text-warning">@ViewBag.TopicsCount</div>
+                <p class="text-muted">C# Topics Covered</p>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="display-6 fw-bold text-info">24/7</div>
+                <p class="text-muted">Learning Access</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- C# Learning Path Section -->
+<div class="container mb-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="text-center mb-4">
+                <h3 class="fw-bold mb-3">🛤️ Your C# Learning Journey</h3>
+                <p class="lead">Follow our structured path from C# beginner to advanced developer</p>
+            </div>
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <div class="card border-success">
+                        <div class="card-body text-center">
+                            <h6 class="card-title text-success">🟢 Beginner</h6>
+                            <small class="text-muted">Variables, Methods, Basic Syntax</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card border-warning">
+                        <div class="card-body text-center">
+                            <h6 class="card-title text-warning">🟡 Intermediate</h6>
+                            <small class="text-muted">OOP, Arrays, Control Structures</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card border-danger">
+                        <div class="card-body text-center">
+                            <h6 class="card-title text-danger">🔴 Advanced</h6>
+                            <small class="text-muted">LINQ, Collections, Advanced Topics</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Getting Started Section -->
+<div class="container mb-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 text-center">
+            <h3 class="fw-bold mb-4">🎮 Ready to Start Learning C#?</h3>
+            <p class="lead mb-4">Begin your C# journey with hands-on challenges and earn achievements as you progress!</p>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                <a href="/Challenge" class="btn btn-primary btn-lg px-4 me-md-2">Start C# Challenges</a>
+                <a href="/Tutorial" class="btn btn-outline-primary btn-lg px-4">Browse C# Tutorials</a>
+            </div>
+        </div>
+    </div>
+</div>
